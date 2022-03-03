@@ -61,6 +61,13 @@ public class dump {
     chessBoard[7][6] = new chessPiece("knight",2 , "k2",0, 1);
 
 
+
+        chessBoard[0][0] = new chessPiece("rook",1 , "r1",0, 1);
+        chessBoard[0][7] = new chessPiece("rook",1 , "r1",0, 1);
+        chessBoard[7][0] = new chessPiece("rook",2 , "r2",0, 1);
+        chessBoard[7][7] = new chessPiece("rook",2 , "r2",0, 1);
+
+
     */
     //KNIGHT MOVEMENT
     /*
