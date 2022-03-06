@@ -2,6 +2,17 @@ package com.company;
 
 public class dump {
 
+    //Variables
+    /*
+    import java.util.Scanner;
+    Scanner sc = new Scanner(System.in);
+    String[][] chess_board = new String[8][8];
+    boolean checkmate = true;
+    int gameMode ;
+
+    */
+
+
     //setup(chess_board);
 
     //USER MODE
@@ -55,10 +66,10 @@ public class dump {
     }
 
 
-    chessBoard[0][1] = new chessPiece("knight",1 , "k1",0, 1);
-    chessBoard[0][6] = new chessPiece("knight",1 , "k1",0, 1);
-    chessBoard[7][1] = new chessPiece("knight",2 , "k2",0, 1);
-    chessBoard[7][6] = new chessPiece("knight",2 , "k2",0, 1);
+    chessBoard[0][1] = new chessPiece("knight",1 , "n1",0, 1);
+    chessBoard[0][6] = new chessPiece("knight",1 , "n1",0, 1);
+    chessBoard[7][1] = new chessPiece("knight",2 , "n2",0, 1);
+    chessBoard[7][6] = new chessPiece("knight",2 , "n2",0, 1);
 
 
 
@@ -72,6 +83,12 @@ public class dump {
         chessBoard[0][5] = new chessPiece("bishop",1 , "b1",0, 1);
         chessBoard[7][2] = new chessPiece("bishop",2 , "b2",0, 1);
         chessBoard[7][5] = new chessPiece("bishop",2 , "b2",0, 1);
+
+        chessBoard[0][4] = new chessPiece("queen",1 , "q1",0, 1);
+        chessBoard[7][4] = new chessPiece("queen",2 , "q2",0, 1);
+
+        chessBoard[0][3] = new chessPiece("king",1 , "k1",0, 1);
+        chessBoard[7][3] = new chessPiece("king",2 , "k2",0, 1);
 
 
     */
@@ -95,4 +112,17 @@ public class dump {
 
      */
 
+
+
+
+    //funny
+    /*
+    public static void tab(){
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+     }
+
+     */
 }
