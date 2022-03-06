@@ -30,7 +30,6 @@ public class Main {
         chessBoard = testSetup(newChessBoard);
 
         do{
-
             //checking valid moves
             Moves.addAll(findMoves(chessBoard, playerTurn));
             if(Moves.size() == 0){
@@ -238,34 +237,30 @@ public class Main {
                     }
                     case "k1", "p1", "r1" -> {
                         cont = false;
-
                     }
                 }
-            }else if (playerTurn ==2){
+            }
+            
+            else if (playerTurn ==2){
                 switch (chessBoard[y + j][x + i].getPieceId()) {
                     case ". " -> {
                         Moves.add(String.valueOf(y + j) + String.valueOf(x + i) + String.valueOf(y) + String.valueOf(x));
-
                     }
                     case "k1", "p1", "r1" -> {
                         Moves.add(String.valueOf(y + j) + String.valueOf(x + i) + String.valueOf(y) + String.valueOf(x));
                         cont = false;
-
                     }
                     case "k2", "p2", "r2" -> {
                         cont = false;
-
                     }
                 }
             }
             if (i == 0 ){
                 j++;
-
-            }else if (j ==0){
+            }
+            else if (j ==0){
                 i++;
             }
-
-
         }
         return Moves ;
     }
@@ -278,56 +273,45 @@ public class Main {
                 switch (chessBoard[y + j][x + i].getPieceId()) {
                     case ". " -> {
                         Moves.add(String.valueOf(y + j) + String.valueOf(x + i) + String.valueOf(y) + String.valueOf(x));
-
                     }
                     case "k2", "p2", "r2","b2" -> {
                         Moves.add(String.valueOf(y + j) + String.valueOf(x + i) + String.valueOf(y) + String.valueOf(x));
                         cont = false;
-
                     }
                     case "k1", "p1", "r1","b1" -> {
                         cont = false;
-
                     }
                 }
             }else if (playerTurn ==2){
                 switch (chessBoard[y + j][x + i].getPieceId()) {
                     case ". " -> {
                         Moves.add(String.valueOf(y + j) + String.valueOf(x + i) + String.valueOf(y) + String.valueOf(x));
-
                     }
                     case "k1", "p1", "r1","b1" -> {
                         Moves.add(String.valueOf(y + j) + String.valueOf(x + i) + String.valueOf(y) + String.valueOf(x));
                         cont = false;
-
                     }
                     case "k2", "p2", "r2","b2" -> {
                         cont = false;
-
                     }
                 }
             }
+            
             if (i > 0 ){
                 i++;
-            }else if (i<0){
+            }
+            else if (i<0){
                 i--;
             }
             if (j > 0){
                 j++;
-            }else if (j < 0){
+            }
+            else if (j < 0){
                 j--;
             }
-
-
         }
         return Moves ;
     }
-
-
-
-
-
-
 
     public static String moveDecide(List<String> Moves){
         Random rand = new Random();
