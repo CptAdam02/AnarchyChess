@@ -112,6 +112,114 @@ public class dump {
 
      */
 
+    //User Code
+
+    /*
+
+    //game setup - the set-up of the starting chessboard template
+    //assuming white is the bottom of the chess board
+    public static String[][] setup(String[][] chess_board){
+
+        // r n b k q b n r   8
+        // p p p p p p p p   7
+        //                   6
+        //                   5
+        //                   4
+        //                   3
+        // p p p p p p p p   2
+        // r n b k q b n r   1
+
+        // a b c d e f g h
+
+        for (int x = 0; x < chess_board.length ; x++){
+            for (int y = 0; y < chess_board.length ; y++) {
+                if (( x == 0) || (x == 7 )){
+                    if (( y == 0 ) || ( y == 7 )){
+                        chess_board[x][y] = "r ";
+                    }else if (( y == 1 ) || ( y == 6 )){
+                        chess_board[x][y] = "n ";
+                    }else if (( y == 2 ) || ( y == 5 )){
+                        chess_board[x][y] = "b ";
+                    }else if ( y == 3 ){
+                        chess_board[x][y] = "k ";
+                    }else{
+                        chess_board[x][y] = "q ";
+                    }
+                } else if (( x == 1) || (x == 6 )){
+                    chess_board[x][y] = "p ";
+                }else{
+                    chess_board[x][y] = " ";
+                }
+            }
+        }
+        //printBoard(chess_board);
+        return chess_board;
+    }
+
+    //simple print all statement
+    /*
+    public static void printBoard(String[][] chess_board){
+        for (String[] strings : chess_board) {
+            System.out.println("");
+            for (int y = 0; y < chess_board.length; y++) {
+                System.out.print(strings[y]);
+            }
+        }
+    }
+    */
+    /*
+    public static boolean inputValidation(String userInput){
+        String[] xAxis = {"a","b","c","d","e","f","g","h"};
+        if (userInput.length() == 2){
+            String char1 = userInput.substring(0,1);
+            String char2 = userInput.substring(1,2);
+            for (String xAxi : xAxis) {
+                for (int j = 1; j < 9; j++) {
+                    if (char1.equals(xAxi) && char2.equals(Integer.toString(j))) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static String[][] movevalidation (String[][] chess_board,String userInput,int playerTurn){
+        if (userInput.length() == 2) {
+            String char1 = userInput.substring(0, 1);
+            String char2 = userInput.substring(1, 2);
+            int x = chartoint(char1) ;
+            int y = Integer.parseInt(char2);
+
+            if (playerTurn == 0){
+                System.out.println("Placeholder");
+            }
+
+
+
+            return chess_board;
+        }
+        return chess_board;
+    }
+
+    public static int chartoint(String char1){
+        return switch (char1) {
+            case "a" -> 1;
+            case "b" -> 2;
+            case "c" -> 3;
+            case "d" -> 4;
+            case "e" -> 5;
+            case "f" -> 6;
+            case "g" -> 7;
+            case "h" -> 8;
+            default -> 0;
+        };
+    }
+
+
+*/
+
+
 
 
 
