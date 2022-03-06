@@ -24,9 +24,11 @@ public class chessPiece {
     public int getColour(){
         return this.colour;
     }
+    
     public String getPieceId(){
         return this.pieceId;
     }
+    
     public String getPieceType(){
         return this.pieceType;
     }
