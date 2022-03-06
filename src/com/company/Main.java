@@ -111,8 +111,6 @@ public class Main {
         return Moves;
     }
 
-
-
     public static List<String> pawnCheck(chessPiece[][] chessBoard, int playerTurn, int y, int x){
         List<String> Moves = new ArrayList<>();
         if (playerTurn == 1){
@@ -177,11 +175,9 @@ public class Main {
                             }
                         }
                     }
-
                 }
             }
         }
-
         return Moves;
     }
 
