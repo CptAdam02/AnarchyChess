@@ -15,6 +15,8 @@ public class Main {
         //arrays
         String[][] chess_board = new String[8][8];
         chessPiece[][] chessBoard = new chessPiece[8][8];
+        chessPiece[][] newChessBoard = new chessPiece[8][8];
+
         //booleans
         boolean checkmate = true;
         //integers
@@ -25,7 +27,7 @@ public class Main {
         List<String> Moves = new ArrayList<String>();
 
         //setup board
-        testSetup(chessBoard);
+        chessBoard = testSetup(newChessBoard);
 
         do{
 
@@ -34,7 +36,7 @@ public class Main {
             if(Moves.size() == 0){
                 i = 100;
             }else{
-                moveApplication(chessBoard, moveDecide(Moves));
+                chessBoard = moveApplication(chessBoard, moveDecide(Moves));
             }
             Moves.clear();
             printBoard(chessBoard);
@@ -53,7 +55,7 @@ public class Main {
             }
             i++;
         }
-        while(i <10);
+        while(i <100);
     }
 
     /*      to do
@@ -71,16 +73,10 @@ public class Main {
         for (int x = 0; x < chessBoard.length; x ++){
             for (int y = 0; y < chessBoard.length; y ++){
                 chessBoard[y][x] = new chessPiece(".",0,". ", y , x);
-
             }
         }
-
-        chessBoard[0][2] = new chessPiece("bishop",1 , "b1",0, 1);
-        chessBoard[0][5] = new chessPiece("bishop",1 , "b1",0, 1);
-        chessBoard[7][2] = new chessPiece("bishop",2 , "b2",0, 1);
-        chessBoard[7][5] = new chessPiece("bishop",2 , "b2",0, 1);
-
-
+        chessBoard[0][4] = new chessPiece("queen",1 , "q1",0, 1);
+        chessBoard[7][4] = new chessPiece("queen",2 , "q2",0, 1);
         printBoard(chessBoard);
         return chessBoard;
     }
@@ -100,35 +96,23 @@ public class Main {
         for (int x = 0; x < chessBoard.length; x++){
             for (int y = 0; y < chessBoard.length; y++){
                 if (chessBoard[y][x].getColour() == playerTurn){
-                    switch(chessBoard[y][x].getPieceType()){
-                        case "pawn":
-                            Moves.addAll(pawnCheck(chessBoard,playerTurn,y,x));
-                            break;
-                        case "rook":
-                            Moves.addAll(rookCheck(chessBoard,playerTurn,y,x));
-                            break;
-                        case "knight":
-                            Moves.addAll(knightCheck(chessBoard,playerTurn,y,x));
-                            break;
-                        case "bishop":
-
-                            Moves.addAll(bishopCheck(chessBoard,playerTurn,y,x));
-
-                            break;
-                        case "king":
-
-                            break;
-                        case "queen":
-
-                            break;
-                        default:
-                            System.out.println("default");
+                    switch (chessBoard[y][x].getPieceType()) {
+                        case "pawn" -> Moves.addAll(pawnCheck(chessBoard, playerTurn, y, x));
+                        case "rook" -> Moves.addAll(rookCheck(chessBoard, playerTurn, y, x));
+                        case "knight" -> Moves.addAll(knightCheck(chessBoard, playerTurn, y, x));
+                        case "bishop" -> Moves.addAll(bishopCheck(chessBoard, playerTurn, y, x));
+                        case "king" -> Moves.addAll(kingCheck(chessBoard, playerTurn, y, x));
+                        case "queen" -> Moves.addAll(queenCheck(chessBoard, playerTurn, y, x));
+                        default -> System.out.println("default");
                     }
                 }
             }
         }
         return Moves;
     }
+
+
+
     public static List<String> pawnCheck(chessPiece[][] chessBoard, int playerTurn, int y, int x){
         List<String> Moves = new ArrayList<>();
         if (playerTurn == 1){
@@ -172,12 +156,6 @@ public class Main {
                 }
             }
         }
-
-
-
-
-
-
         return Moves ;
     }
 
@@ -219,11 +197,37 @@ public class Main {
         return Moves;
     }
 
+    public static List<String> kingCheck(chessPiece[][] chessBoard, int playerTurn, int y, int x ){
+        List<String> Moves = new ArrayList<>();
+        for(int i = -1; i < 2;i++ ) {
+            for (int j = -1; j < 2;j++) {
+                if (((i==j) || (i==-j))&&((i!=0))){
+                    Moves.addAll(directionCheckDiagonal(chessBoard,playerTurn,x,y,j,i));
+                }
+            }
+        }
+        return Moves;
+    }
+
+    public static List<String> queenCheck(chessPiece[][] chessBoard, int playerTurn, int y, int x ){
+        List<String> Moves = new ArrayList<>();
+        for(int i = -1; i < 2;i++ ) {
+            for (int j = -1; j < 2;j++) {
+                if (((i==j) || (i==-j))&&((i!=0))){
+                    Moves.addAll(directionCheckDiagonal(chessBoard,playerTurn,x,y,j,i));
+                } else if (i != j){
+                    Moves.addAll(directionCheckFlat(chessBoard,playerTurn,x,y,j,i));
+                }
+            }
+        }
+        return Moves;
+    }
+
+
+
     public static List<String> directionCheckFlat(chessPiece[][] chessBoard,int playerTurn,int x,int y,int i,int j){
         List<String> Moves = new ArrayList<>();
         boolean cont = true;
-
-
         while((cont) && ((-1<x+i)&&(x+i<8)) && ((-1<y+j)&&(y+j<8)) ){
             if (playerTurn == 1){
                 switch (chessBoard[y + j][x + i].getPieceId()) {
@@ -269,12 +273,9 @@ public class Main {
         }
         return Moves ;
     }
-
     public static List<String> directionCheckDiagonal(chessPiece[][] chessBoard,int playerTurn,int x,int y,int i,int j){
         List<String> Moves = new ArrayList<>();
         boolean cont = true;
-
-        System.out.println(i + " " + j );
 
         while((cont) && ((-1<x+i)&&(x+i<8)) && ((-1<y+j)&&(y+j<8)) ){
             if (playerTurn == 1){
@@ -339,8 +340,6 @@ public class Main {
 
     public static chessPiece[][] moveApplication(chessPiece[][] chessBoard, String move){
         System.out.println(move);
-
-
         chessBoard[Integer.parseInt(move.substring(0,1))][Integer.parseInt(move.substring(1,2))] = chessBoard[Integer.parseInt(move.substring(2,3))][Integer.parseInt(move.substring(3,4))];
         chessBoard[Integer.parseInt(move.substring(2,3))][Integer.parseInt(move.substring(3,4))] = new chessPiece(". ",0,". ", Integer.parseInt(move.substring(2,3)) , Integer.parseInt(move.substring(3,4)));
         return chessBoard;

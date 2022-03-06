@@ -27,7 +27,6 @@ public class chessPiece {
     public String getPieceId(){
         return this.pieceId;
     }
-
     public String getPieceType(){
         return this.pieceType;
     }
