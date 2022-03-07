@@ -29,7 +29,6 @@ public class Main {
                 chessBoard = moveApplication(chessBoard, moveDecide(Moves),playerTurn);
             }
             Moves.clear();
-            printBoard(chessBoard);
 
 
 
@@ -45,7 +44,8 @@ public class Main {
             }
             i++;
         }
-        while(i <100);
+        while(i <10);
+        printBoard(chessBoard);
     }
 
 
@@ -102,9 +102,9 @@ public class Main {
     }
 
     public static void printBoard (chessPiece[][] chessBoard ){
-        for (chessPiece[] chessPieces : chessBoard) {
-            for (int y = 0; y < chessBoard.length; y++) {
-                System.out.print(chessPieces[y]);
+        for (int x = chessBoard.length - 1; x > -1 ; x --) {
+            for (int y = chessBoard.length - 1; y > -1 ; y --) {
+                System.out.print(chessBoard[x][y]);
             }
             System.out.println();
         }
@@ -344,10 +344,11 @@ public class Main {
         int inY = Integer.parseInt(move.substring(2,3));
         int inX = Integer.parseInt(move.substring(3,4));
         OutputMove(chessBoard, finY, finX, inY, inX, playerTurn);
-
-        System.out.println(move);
         chessBoard[finY][finX] = chessBoard[inY][inX];
         chessBoard[inY][inX] = new chessPiece(". ",0,". ", inY , inX);
+        if(playerTurn ==2 ){
+            printBoard(chessBoard);
+        }
         return chessBoard;
     }
 
@@ -364,11 +365,7 @@ public class Main {
             switch (chessBoard[finY][finX].getPieceId()){
                 case "p2","r2","n2","b2","q2" -> output = output + "x";
             }
-            output = output + finX;
-            output = output + (finY + 1);
-
         }else if (playerTurn == 2){
-
             switch (chessBoard[inY][inX].getPieceId()) {
                 case "r2" -> output = output + "r";
                 case "n2" -> output = output + "n";
@@ -379,20 +376,51 @@ public class Main {
             switch (chessBoard[finY][finX].getPieceId()){
                 case "p1","r1","n1","b1","q1" -> output = output + "x";
             }
-            output = output + finX;
-            output = output + (finY + 1);
+        }
+        output = output + FinXToString(finX);
+        output = output + (finY + 1);
+
+
+
+        if (playerTurn ==1 ){
+            System.out.print(output);
+            System.out.print(" ");
+        }else if (playerTurn ==2 ){
+            System.out.println(output);
         }
 
-
-
-
-
-        System.out.println(output);
     }
 
+    public static String FinXToString(int finX){
+        String output = "";
+        switch (finX){
+            case 0 -> output = "h";
+            case 1 -> output = "g";
+            case 2 -> output = "f";
+            case 3 -> output = "e";
+            case 4 -> output = "d";
+            case 5 -> output = "c";
+            case 6 -> output = "b";
+            case 7 -> output = "a";
+        }
+        return output;
+    }
 
+    public static String FinYToString(int finY){
+        String output = "";
+        switch (finY){
+            case 0 -> output = "8";
+            case 1 -> output = "7";
+            case 2 -> output = "6";
+            case 3 -> output = "5";
+            case 4 -> output = "4";
+            case 5 -> output = "3";
+            case 6 -> output = "2";
+            case 7 -> output = "1";
+        }
+        return output;
 
-
+    }
 
 
 
