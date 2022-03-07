@@ -1,6 +1,75 @@
 package com.company;
 
 public class dump {
+    //removed code for a new form of movement
+    /*
+    if (playerTurn == 1){
+                switch (chessBoard[y + j][x + i].getPieceId()) {
+                    case ". " -> Moves.add(moveCode);
+                    case "p2","r2","n2","b2","q2" -> {
+                        Moves.add(moveCode);
+                        cont = false;
+                    }
+                    case "p1","r1","n1","b1","q1" -> cont = false;
+
+                }
+            }
+            else if (playerTurn ==2){
+                switch (chessBoard[y + j][x + i].getPieceId()) {
+                    case ". " -> Moves.add(moveCode);
+                    case "p1","r1","n1","b1","q1" -> {
+                        Moves.add(moveCode);
+                        cont = false;
+                    }
+                    case "p2","r2","n2","b2","q2" -> cont = false;
+                }
+            }
+
+
+
+
+
+             if (playerTurn == 1){
+                switch (chessBoard[y + j][x + i].getPieceId()) {
+                    case ". " -> Moves.add(moveCode);
+                    case "p2","r2","n2","b2","q2" -> {
+                        Moves.add(moveCode);
+                        cont = false;
+                    }
+                    case "p1","r1","n1","b1","q1" -> cont = false;
+                }
+            }else if (playerTurn ==2){
+                switch (chessBoard[y + j][x + i].getPieceId()) {
+                    case ". " -> Moves.add(moveCode);
+                    case "p1","r1","n1","b1","q1" -> {
+                        Moves.add(moveCode);
+                        cont = false;
+                    }
+                    case "p2","r2","n2","b2","q2" -> cont = false;
+                }
+            }
+
+
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //Variables
     /*

@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class Main {
 
+
+
     //main
     public static void main(String[] args) {
         /*                      definitions                                          */
@@ -44,7 +46,7 @@ public class Main {
             }
             i++;
         }
-        while(i <10);
+        while(i <100);
         printBoard(chessBoard);
     }
 
@@ -61,55 +63,27 @@ public class Main {
 
 
     */
+
+    //setup methods
+
     public static chessPiece[][] testSetup (chessPiece[][] chessBoard){
         for (int x = 0; x < chessBoard.length; x ++){
             for (int y = 0; y < chessBoard.length; y ++){
                 chessBoard[y][x] = new chessPiece(".",0,". ", y , x);
-                if (y == 1){
-                    chessBoard[1][x] = new chessPiece("pawn",1,"p1", 1, 0 );
-                }else if(y == 6){
-                    chessBoard[6][x] = new chessPiece("pawn",2,"p2", 6, 0 );
-                }
+
             }
         }
-
-        chessBoard[0][0] = new chessPiece("rook",1 , "r1",0, 1);
-        chessBoard[0][7] = new chessPiece("rook",1 , "r1",0, 1);
-        chessBoard[7][0] = new chessPiece("rook",2 , "r2",0, 1);
-        chessBoard[7][7] = new chessPiece("rook",2 , "r2",0, 1);
-
-        chessBoard[0][1] = new chessPiece("knight",1 , "n1",0, 1);
-        chessBoard[0][6] = new chessPiece("knight",1 , "n1",0, 1);
-        chessBoard[7][1] = new chessPiece("knight",2 , "n2",0, 1);
-        chessBoard[7][6] = new chessPiece("knight",2 , "n2",0, 1);
-
         chessBoard[0][2] = new chessPiece("bishop",1 , "b1",0, 1);
         chessBoard[0][5] = new chessPiece("bishop",1 , "b1",0, 1);
         chessBoard[7][2] = new chessPiece("bishop",2 , "b2",0, 1);
         chessBoard[7][5] = new chessPiece("bishop",2 , "b2",0, 1);
 
-        chessBoard[0][4] = new chessPiece("queen",1 , "q1",0, 1);
-        chessBoard[7][4] = new chessPiece("queen",2 , "q2",0, 1);
-
-        chessBoard[0][3] = new chessPiece("king",1 , "k1",0, 1);
-        chessBoard[7][3] = new chessPiece("king",2 , "k2",0, 1);
-
-        chessBoard[0][3] = new chessPiece("king",1 , "k1",0, 1);
-        chessBoard[7][3] = new chessPiece("king",2 , "k2",0, 1);
 
         printBoard(chessBoard);
         return chessBoard;
     }
 
-    public static void printBoard (chessPiece[][] chessBoard ){
-        for (int x = chessBoard.length - 1; x > -1 ; x --) {
-            for (int y = chessBoard.length - 1; y > -1 ; y --) {
-                System.out.print(chessBoard[x][y]);
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
+    //finding moves
 
     public static List<String> findMoves (chessPiece[][] chessBoard, int playerTurn){
         List<String> Moves = new ArrayList<>();
@@ -261,26 +235,14 @@ public class Main {
         boolean cont = true;
         while((cont) && ((-1<x+i)&&(x+i<8)) && ((-1<y+j)&&(y+j<8)) ){
             String moveCode = String.valueOf(y + j) + (x + i) + (y) + (x);
-            if (playerTurn == 1){
-                switch (chessBoard[y + j][x + i].getPieceId()) {
-                    case ". " -> Moves.add(moveCode);
-                    case "p2","r2","n2","b2","q2" -> {
-                        Moves.add(moveCode);
-                        cont = false;
-                    }
-                    case "p1","r1","n1","b1","q1" -> cont = false;
-
-                }
-            }
-            else if (playerTurn ==2){
-                switch (chessBoard[y + j][x + i].getPieceId()) {
-                    case ". " -> Moves.add(moveCode);
-                    case "p1","r1","n1","b1","q1" -> {
-                        Moves.add(moveCode);
-                        cont = false;
-                    }
-                    case "p2","r2","n2","b2","q2" -> cont = false;
-                }
+            String colour = chessBoard[y + j][x + i].getPieceId().substring(1,2);
+            if (colour.equals(" ")){
+                Moves.add(moveCode);
+            }else if (colour.equals(Integer.toString(playerTurn))){
+                cont = false;
+            }else {
+                Moves.add(moveCode);
+                cont = false;
             }
             if (i == 0 ){
                 j++;
@@ -295,27 +257,16 @@ public class Main {
     public static List<String> directionCheckDiagonal(chessPiece[][] chessBoard,int playerTurn,int x,int y,int i,int j){
         List<String> Moves = new ArrayList<>();
         boolean cont = true;
-
         while((cont) && ((-1<x+i)&&(x+i<8)) && ((-1<y+j)&&(y+j<8)) ){
             String moveCode = String.valueOf(y + j) + (x + i) + (y) + (x);
-            if (playerTurn == 1){
-                switch (chessBoard[y + j][x + i].getPieceId()) {
-                    case ". " -> Moves.add(moveCode);
-                    case "p2","r2","n2","b2","q2" -> {
-                        Moves.add(moveCode);
-                        cont = false;
-                    }
-                    case "p1","r1","n1","b1","q1" -> cont = false;
-                }
-            }else if (playerTurn ==2){
-                switch (chessBoard[y + j][x + i].getPieceId()) {
-                    case ". " -> Moves.add(moveCode);
-                    case "p1","r1","n1","b1","q1" -> {
-                        Moves.add(moveCode);
-                        cont = false;
-                    }
-                    case "p2","r2","n2","b2","q2" -> cont = false;
-                }
+            String colour = chessBoard[y + j][x + i].getPieceId().substring(1,2);
+            if (colour.equals(" ")){
+                Moves.add(moveCode);
+            }else if (colour.equals(Integer.toString(playerTurn))){
+                cont = false;
+            }else {
+                Moves.add(moveCode);
+                cont = false;
             }
             if (i>0){
                 i++;
@@ -332,6 +283,8 @@ public class Main {
         }
         return Moves ;
     }
+
+    //move decision and application methods
 
     public static String moveDecide(List<String> Moves){
         Random rand = new Random();
@@ -350,6 +303,18 @@ public class Main {
             printBoard(chessBoard);
         }
         return chessBoard;
+    }
+
+    //output methods
+
+    public static void printBoard (chessPiece[][] chessBoard ){
+        for (int x = chessBoard.length - 1; x > -1 ; x --) {
+            for (int y = chessBoard.length - 1; y > -1 ; y --) {
+                System.out.print(chessBoard[x][y]);
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     public static void OutputMove (chessPiece[][] chessBoard ,int finY ,int finX ,int inY ,int inX, int playerTurn){
@@ -380,8 +345,6 @@ public class Main {
         output = output + FinXToString(finX);
         output = output + (finY + 1);
 
-
-
         if (playerTurn ==1 ){
             System.out.print(output);
             System.out.print(" ");
@@ -406,21 +369,6 @@ public class Main {
         return output;
     }
 
-    public static String FinYToString(int finY){
-        String output = "";
-        switch (finY){
-            case 0 -> output = "8";
-            case 1 -> output = "7";
-            case 2 -> output = "6";
-            case 3 -> output = "5";
-            case 4 -> output = "4";
-            case 5 -> output = "3";
-            case 6 -> output = "2";
-            case 7 -> output = "1";
-        }
-        return output;
-
-    }
 
 
 
