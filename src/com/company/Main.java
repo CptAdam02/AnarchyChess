@@ -26,7 +26,7 @@ public class Main {
             if(Moves.size() == 0){
                 i = 100000000;
             }else{
-                chessBoard = moveApplication(chessBoard, moveDecide(Moves));
+                chessBoard = moveApplication(chessBoard, moveDecide(Moves),playerTurn);
             }
             Moves.clear();
             printBoard(chessBoard);
@@ -338,11 +338,12 @@ public class Main {
         return Moves.get(rand.nextInt(Moves.size()));
     }
 
-    public static chessPiece[][] moveApplication(chessPiece[][] chessBoard, String move){
+    public static chessPiece[][] moveApplication(chessPiece[][] chessBoard, String move, int playerTurn){
         int finY = Integer.parseInt(move.substring(0,1));
         int finX = Integer.parseInt(move.substring(1,2));
         int inY = Integer.parseInt(move.substring(2,3));
         int inX = Integer.parseInt(move.substring(3,4));
+        OutputMove(chessBoard, finY, finX, inY, inX, playerTurn);
 
         System.out.println(move);
         chessBoard[finY][finX] = chessBoard[inY][inX];
@@ -350,10 +351,43 @@ public class Main {
         return chessBoard;
     }
 
-    public static void OutputMove (chessPiece[][] chessBoard ,int finY ,int finX ,int inY ,int inX){
+    public static void OutputMove (chessPiece[][] chessBoard ,int finY ,int finX ,int inY ,int inX, int playerTurn){
+        String output = "";
+        if (playerTurn == 1){
+            switch (chessBoard[inY][inX].getPieceId()) {
+                case "r1" -> output = output + "r";
+                case "n1" -> output = output + "n";
+                case "b1" -> output = output + "b";
+                case "q1" -> output = output + "q";
+                case "k1" -> output = output + "k";
+            }
+            switch (chessBoard[finY][finX].getPieceId()){
+                case "p2","r2","n2","b2","q2" -> output = output + "x";
+            }
+            output = output + finX;
+            output = output + (finY + 1);
+
+        }else if (playerTurn == 2){
+
+            switch (chessBoard[inY][inX].getPieceId()) {
+                case "r2" -> output = output + "r";
+                case "n2" -> output = output + "n";
+                case "b2" -> output = output + "b";
+                case "q2" -> output = output + "q";
+                case "k2" -> output = output + "k";
+            }
+            switch (chessBoard[finY][finX].getPieceId()){
+                case "p1","r1","n1","b1","q1" -> output = output + "x";
+            }
+            output = output + finX;
+            output = output + (finY + 1);
+        }
 
 
 
+
+
+        System.out.println(output);
     }
 
 

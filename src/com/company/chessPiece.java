@@ -7,7 +7,6 @@ public class chessPiece {
     int y;
     int x;
 
-
     public chessPiece(String pieceType,int colour,String pieceId,int y,int x){
         this.pieceType = pieceType;
         this.colour = colour;
